@@ -128,11 +128,12 @@ class PrgComponent extends Component {
 		foreach ($this->controller->presetVars as $field) {
 			if ($field['type'] == 'checkbox') {
 				if (array_key_exists($field['field'], $data)) {
-					$values = join('|', (array)$data[$field['field']]);
+					$data[$field['field']] = join('|', (array)$data[$field['field']]);
 				} else {
-					$values = '';
+					if (!isset($field['multiple']) && $field['multiple'] !== true) {
+						$data[$field['field']] = '';
+					}
 				}
-				$data[$field['field']] = $values;
 			}
 
 			if ($this->encode == true || isset($field['encode']) && $field['encode'] == true) {
