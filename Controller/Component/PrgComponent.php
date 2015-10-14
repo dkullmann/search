@@ -130,7 +130,7 @@ class PrgComponent extends Component {
 				if (array_key_exists($field['field'], $data)) {
 					$data[$field['field']] = join('|', (array)$data[$field['field']]);
 				} else {
-					if (!isset($field['multiple']) && $field['multiple'] !== true) {
+					if (!isset($field['multiple']) || $field['multiple'] !== true) {
 						$data[$field['field']] = '';
 					}
 				}
